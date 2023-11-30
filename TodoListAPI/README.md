@@ -48,7 +48,7 @@ CREATE TABLE TodoItems (
    Use EF Core to scaffold the model from your MySQL database. Run the following command, replacing the connection string with your database details:
 
    ```bash
-   dotnet ef dbcontext scaffold "Server=localhost;Database=TodoListDB;User=root;Password=root;" Pomelo.EntityFrameworkCore.MySql -OutputDir Models
+   dotnet ef dbcontext scaffold "Server=localhost;Database=TodoListDB;User=root;Password=root;" Pomelo.EntityFrameworkCore.MySql -output-dir Models
    ```
 
    This command will create entity classes and a `DbContext` in the `Models` directory based on the existing database schema.
