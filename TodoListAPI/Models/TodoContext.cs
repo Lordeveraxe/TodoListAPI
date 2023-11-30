@@ -15,7 +15,7 @@ public partial class TodoContext : DbContext
     {
     }
 
-    public virtual DbSet<Todoitem> Todoitems { get; set; }
+    public virtual DbSet<TodoItem> TodoItems { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseMySql("server=localhost;port=3306;database=todolistdb;user=root;password=root", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.35-mysql"));
@@ -26,7 +26,7 @@ public partial class TodoContext : DbContext
             .UseCollation("utf8mb4_0900_ai_ci")
             .HasCharSet("utf8mb4");
 
-        modelBuilder.Entity<Todoitem>(entity =>
+        modelBuilder.Entity<TodoItem>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 

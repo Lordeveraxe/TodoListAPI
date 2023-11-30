@@ -22,24 +22,24 @@ namespace TodoListAPI.Controllers
 
         // GET: api/TodoItems
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Todoitem>>> GetTodoitems()
+        public async Task<ActionResult<IEnumerable<TodoItem>>> GetTodoItems()
         {
-          if (_context.Todoitems == null)
+          if (_context.TodoItems == null)
           {
               return NotFound();
           }
-            return await _context.Todoitems.ToListAsync();
+            return await _context.TodoItems.ToListAsync();
         }
 
         // GET: api/TodoItems/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Todoitem>> GetTodoitem(int id)
+        public async Task<ActionResult<TodoItem>> GetTodoItem(int id)
         {
-          if (_context.Todoitems == null)
+          if (_context.TodoItems == null)
           {
               return NotFound();
           }
-            var todoitem = await _context.Todoitems.FindAsync(id);
+            var todoitem = await _context.TodoItems.FindAsync(id);
 
             if (todoitem == null)
             {
@@ -49,17 +49,22 @@ namespace TodoListAPI.Controllers
             return todoitem;
         }
 
-        // PUT: api/TodoItems/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTodoitem(int id, Todoitem todoitem)
+        public async Task<IActionResult> PutTodoItem(int id, TodoItem todoitem)
         {
             if (id != todoitem.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(todoitem).State = EntityState.Modified;
+            var existingItem = await _context.TodoItems.FindAsync(id);
+            if (existingItem == null)
+            {
+                return NotFound();
+            }
+
+            existingItem.Title = todoitem.Title;
+            existingItem.Description = todoitem.Description;
 
             try
             {
@@ -83,33 +88,33 @@ namespace TodoListAPI.Controllers
         // POST: api/TodoItems
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Todoitem>> PostTodoitem(Todoitem todoitem)
+        public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoitem)
         {
-          if (_context.Todoitems == null)
+          if (_context.TodoItems == null)
           {
-              return Problem("Entity set 'TodoContext.Todoitems'  is null.");
+              return Problem("Entity set 'TodoContext.TodoItems'  is null.");
           }
-            _context.Todoitems.Add(todoitem);
+            _context.TodoItems.Add(todoitem);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTodoitem", new { id = todoitem.Id }, todoitem);
+            return CreatedAtAction("GetTodoItem", new { id = todoitem.Id }, todoitem);
         }
 
         // DELETE: api/TodoItems/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTodoitem(int id)
+        public async Task<IActionResult> DeleteTodoItem(int id)
         {
-            if (_context.Todoitems == null)
+            if (_context.TodoItems == null)
             {
                 return NotFound();
             }
-            var todoitem = await _context.Todoitems.FindAsync(id);
+            var todoitem = await _context.TodoItems.FindAsync(id);
             if (todoitem == null)
             {
                 return NotFound();
             }
 
-            _context.Todoitems.Remove(todoitem);
+            _context.TodoItems.Remove(todoitem);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -117,7 +122,7 @@ namespace TodoListAPI.Controllers
 
         private bool TodoitemExists(int id)
         {
-            return (_context.Todoitems?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.TodoItems?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
