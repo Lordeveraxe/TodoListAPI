@@ -1,0 +1,23 @@
+User: Acceptance Criteria: There are all the required codes and configs in the repository to run the application. There is a readme.md file with the application description and instructions on how to run it. Code is of good quality and easy to read and understand. There are unit tests in place, coverage >80% There are quality checks (coverage, complexity, check style) ChatGPT conversation logs are attached in the file chat.log Short feedback for each task added to readme.md in the following format: Was it easy to complete the task using AI? How long did task take you to complete? (Please be honest, we need it to gather anonymized statistics) Was the code ready to run after generation? What did you have to change to make it usable? Which challenges did you face during completion of the task? Which specific prompts you learned as a good practice to complete the task?
+
+Assistant: To meet the specified acceptance criteria for your project, you should ensure the following components are in place: [Detailed response on project setup and guidelines]
+
+User: Task 1 Create a RESTful API to manage a simple todo list application using ASP.NET Core, EF and MySQL. The application should allow users to create, read, update, and delete todo items. Each item should have a title and a description. Use EF.Core to persist the items in the database.
+
+Assistant: Creating a RESTful API for a simple todo list application using ASP.NET Core, Entity Framework (EF) Core, and MySQL involves several steps. [Detailed response on creating the API]
+
+User: Generate the entity and the bd according to the task to do database first.
+
+Assistant: To generate the entity and database using a "Database First" approach for your ASP.NET Core application with Entity Framework (EF) Core and MySQL, follow these steps: [Detailed instructions on database first approach]
+
+User: Create the file readme.md to the project explaining what have to do, and set up also includes: [specific commands for generating controller and scaffolding models]
+
+Assistant: Certainly! Below is a template for a `README.md` file for your project. [Provided a detailed README.md template]
+
+User: genenerate README.md download with all the information
+
+Assistant: [Generated the README.md content and provided a download link]
+
+User: generate a donwloable chat.log that includes all the messages in this conversation
+
+Assistant: [Preparing to generate the chat.log]
